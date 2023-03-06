@@ -4,6 +4,7 @@ const cors = require('cors')
 
 require("dotenv").config()
 
+const routerAuth = require('./routes/api/routerAuth')
 const routerContacts = require('./routes/api/routerContacts')
 
 const app = express()
@@ -14,6 +15,7 @@ app.use(logger(formatsLogger))
 app.use(cors())
 app.use(express.json())
 
+app.use('/api/auth', routerAuth)
 app.use('/api/contacts', routerContacts)
 
 app.use((req, res) => {
