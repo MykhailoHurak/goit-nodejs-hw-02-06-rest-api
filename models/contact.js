@@ -11,17 +11,15 @@ const contactSchema = new Schema({
     phone: {
         type: String,
     },
-     favorite: {
+    favorite: {
         type: Boolean,
         default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+    },
 }, {versionKey: false, timestamps: true})
-
-// contactSchema.post("save", (error, data, next) => {
-//     const { code, name } = error
-//     error.status = (name === "MongoServerError" && code === 11000) ? 409 : 400
-//     next()
-// })
 
 const ContactModel = model("contact", contactSchema)
 
