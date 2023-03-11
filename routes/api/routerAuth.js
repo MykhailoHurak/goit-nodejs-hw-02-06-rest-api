@@ -1,12 +1,16 @@
 const express = require("express")
 
-const { register, login, current, logout, updateAvatar } = require("../../controllers/auth")
+const { register, verify, resendVerifyEmail, login, current, logout, updateAvatar } = require("../../controllers/auth")
 const { authenticate, upload } = require("../../middlewares")
 const { ctrlWrapper } = require("../../helpers")
 
 const router = express.Router()
 
 router.post('/register', ctrlWrapper(register))
+
+router.get('/verify/:verificationToken', ctrlWrapper(verify))
+
+router.post('/verify', ctrlWrapper(resendVerifyEmail))
 
 router.post('/login', ctrlWrapper(login))
 
